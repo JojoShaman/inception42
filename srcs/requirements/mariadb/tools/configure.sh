@@ -1,5 +1,9 @@
 #!/bin/sh
 
+MYSQL_ROOT_PWD=$(cat /run/secrets/db_root_password)
+WP_DATABASE_PWD=$(cat /run/secrets/db_password)
+WP_DATABASE_USER=$(awk 'NR==2' /run/secrets/credentials)
+
 if [ ! -d "/run/mysqld" ]; then
     mkdir -p /run/mysqld
     chown -R mysql:mysql /run/mysqld

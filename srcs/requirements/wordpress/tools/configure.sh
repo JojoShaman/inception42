@@ -1,5 +1,15 @@
 #!/bin/sh
 
+MYSQL_HOST=$(awk 'NR==1' /run/secrets/credentials)
+WP_DATABASE_USER=$(awk 'NR==2' /run/secrets/credentials)
+WP_DATABASE_PWD=$(cat /run/secrets/db_password)
+WP_ADMIN_USER=$(awk 'NR==3 {print $1}' /run/secrets/credentials)
+WP_ADMIN_EMAIL=$(awk 'NR==3 {print $2}' /run/secrets/credentials)
+WP_ADMIN_PWD=$(cat /run/secrets/wp_admin_password)
+WP_USR=$(awk 'NR==4 {print $1}' /run/secrets/credentials)
+WP_EMAIL=$(awk 'NR==4 {print $2}' /run/secrets/credentials)
+WP_PWD=$(cat /run/secrets/wp_user_password)
+
 while ! mariadb -h$MYSQL_HOST -u$WP_DATABASE_USER -p$WP_DATABASE_PWD $WP_DATABASE_NAME >/dev/null 2>&1; do
     sleep 3
 done
