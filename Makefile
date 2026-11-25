@@ -41,7 +41,7 @@ status:
 prune: down
 	@echo "$(RED)━━━━━━━━━━━━━━━━━━ [ CLEANING EVERYTHING ] ━━━━━━━━━━━━━━━$(RESET)"
 	@sudo rm -rf ../data/mariadb/* ../data/wordpress/*
-	@docker volumes rm mariadb wordpress
+	@docker volume rm mariadb wordpress
 	@docker system prune -fa --volumes
 
 rmi:
