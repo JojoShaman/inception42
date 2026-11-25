@@ -4,7 +4,7 @@ YELLOW = \033[1;33m
 BLUE = \033[1;34m
 RESET = \033[0m
 
-all: dirs banner build up
+all: banner dirs build up
 
 build: dirs
 	@echo "$(BLUE)━━━━━━━━━━━━━━━━━━ [ BUILDING IMAGES ] ━━━━━━━━━━━━━━━━━━$(RESET)"
