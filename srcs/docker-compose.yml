@@ -1,9 +1,9 @@
-
 services:
 
   nginx:
-    container_name: nginx
     build: requirements/nginx/
+    image: nginx
+    container_name: nginx
     restart: always
     ports:
       - 443:443
@@ -15,8 +15,9 @@ services:
       - frontend
 
   wordpress:
-    container_name: wordpress
     build: requirements/wordpress/
+    image: wordpress
+    container_name: wordpress
     restart: always
     ports:
       - 9000:9000
@@ -33,13 +34,14 @@ services:
       - wp_admin_password
       - wp_user_password
     environment:
-      WP_DATABASE_NAME:  ${WP_DATABASE_NAME}
-      DOMAIN_NAME:       ${DOMAIN_NAME}
-      WP_TITLE:          ${WP_TITLE}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      WP_TITLE: ${WP_TITLE}
 
   mariadb:
-    container_name: mariadb
     build: requirements/mariadb/
+    image: mariadb
+    container_name: mariadb
     restart: always
     ports:
       - 3306:3306
@@ -52,7 +54,7 @@ services:
       - db_root_password
       - db_password
     environment:
-      WP_DATABASE_NAME:  ${WP_DATABASE_NAME}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
 
 networks:
   frontend:
